@@ -1,0 +1,11 @@
+PageObject\RegisterPage.class
+PageObject\ForgotPasswordPage.class
+forAPI\SpecificationAPI.class
+PageObject\LoginPage.class
+forAPI\UserAPI.class
+Browser.class
+PageObject\MainPage.class
+PageObject\ProfilePage.class
+forAPI\DeleteUserAPI.class
+forAPI\User.class
+PageObject\NavigatePanelPage.class
