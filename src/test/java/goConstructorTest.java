@@ -1,5 +1,6 @@
 import PageObject.LoginPage;
 import PageObject.NavigatePanelPage;
+import forAPI.SpecificationAPI;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -11,7 +12,7 @@ import org.openqa.selenium.WebDriver;
 public class goConstructorTest {
 
 
-    private final WebDriver driver = Browser.selectBrowser(Browser.CHROME);
+    private final WebDriver driver = Browser.getDriver();
 
     LoginPage loginPage = new LoginPage(driver);
     NavigatePanelPage navigatePanelPage = new NavigatePanelPage(driver);
@@ -19,7 +20,7 @@ public class goConstructorTest {
 
     @Before
     public void beforeTest() {
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get(SpecificationAPI.BASE_URL);
     }
 
     @After

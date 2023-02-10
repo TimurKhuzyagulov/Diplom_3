@@ -1,4 +1,5 @@
 import PageObject.MainPage;
+import forAPI.SpecificationAPI;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -10,13 +11,13 @@ import org.openqa.selenium.WebDriver;
 import java.util.concurrent.TimeUnit;
 
 public class goChapterTest {
-    private final WebDriver driver = Browser.selectBrowser(Browser.CHROME);
+    private final WebDriver driver = Browser.getDriver();
 
     MainPage mainPage = new MainPage(driver);
 
     @Before
     public void beforeTest() {
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get(SpecificationAPI.BASE_URL);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.MINUTES);
     }
 

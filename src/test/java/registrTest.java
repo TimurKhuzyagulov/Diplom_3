@@ -2,6 +2,7 @@ import PageObject.LoginPage;
 import PageObject.NavigatePanelPage;
 import PageObject.RegisterPage;
 import forAPI.DeleteUserAPI;
+import forAPI.SpecificationAPI;
 import forAPI.User;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
@@ -15,14 +16,14 @@ public class registrTest {
 
     User userTestSuccess = new User("timTest@mail.ru", "1232212", "timName");
     User userTestShortPassword = new User("testShort@mail.ru", "1234", "testShort");
-    private final WebDriver driver = Browser.selectBrowser(Browser.CHROME);
+    private final WebDriver driver = Browser.getDriver();
     LoginPage loginPage = new LoginPage(driver);
     RegisterPage registrPage = new RegisterPage(driver);
     NavigatePanelPage navigatePanelPage = new NavigatePanelPage(driver);
 
     @Before
     public void beforeTest() {
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get(SpecificationAPI.BASE_URL);
         navigatePanelPage.btnPersonalAccountClick();
         loginPage.btnRegistrClick();
     }

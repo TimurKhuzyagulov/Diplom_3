@@ -1,4 +1,5 @@
 import PageObject.*;
+import forAPI.SpecificationAPI;
 import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import org.junit.After;
@@ -9,7 +10,7 @@ import org.openqa.selenium.WebDriver;
 
 public class loginTest {
 
-    private final WebDriver driver = Browser.selectBrowser(Browser.CHROME);
+    private final WebDriver driver = Browser.getDriver();
 
     MainPage mainPage = new MainPage(driver);
     LoginPage loginPage = new LoginPage(driver);
@@ -19,11 +20,11 @@ public class loginTest {
 
     @Before
     public void beforeTest() {
-        driver.get("https://stellarburgers.nomoreparties.site/");
+        driver.get(SpecificationAPI.BASE_URL);
     }
 
     @After
-    public void afterTest(){
+    public void afterTest() {
         driver.quit();
     }
 
@@ -31,45 +32,45 @@ public class loginTest {
     @Test
     @DisplayName("Вход в ЛК через кнопку Войти в аккаунт")
     @Description("Проверяем вход в ЛК, через кнопку Войти в аккаунт")
-    public void enterToAccountFromMainPage(){
+    public void enterToAccountFromMainPage() {
         mainPage.btnEnterAccountClick();
         loginPage.setLoginPageDefoultUser();
         navigatePanelPage.btnPersonalAccountClick();
-        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl().toString());
+        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("Вход в ЛК через кнопку Личный кабинет")
     @Description("Проверяем вход в ЛК, через кнопку Личный кабинет")
-    public void enterToAccountFromNav(){
+    public void enterToAccountFromNav() {
         navigatePanelPage.btnPersonalAccountClick();
         loginPage.setLoginPageDefoultUser();
         navigatePanelPage.btnPersonalAccountClick();
-        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl().toString());
+        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("Вход в ЛК через кнопку на форме Регистрации")
     @Description("Проверяем вход в ЛК, через кнопку на форме Регистрации")
-    public void enterToAccountFromRegisterPage(){
+    public void enterToAccountFromRegisterPage() {
         navigatePanelPage.btnPersonalAccountClick();
         loginPage.btnRegistrClick();
         registrPage.btnEnterAccountClick();
         loginPage.setLoginPageDefoultUser();
         navigatePanelPage.btnPersonalAccountClick();
-        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl().toString());
+        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl());
     }
 
     @Test
     @DisplayName("Вход в ЛК через кнопку на форме Восстановления пароля")
     @Description("Проверяем вход в ЛК, через кнопку на форме Восстановления пароля")
-    public void enterToAccountFromForgotPasswordPage(){
+    public void enterToAccountFromForgotPasswordPage() {
         navigatePanelPage.btnPersonalAccountClick();
         loginPage.btnForgotPasswordClick();
         forgotPasswordPage.btnEnterAccountClick();
         loginPage.setLoginPageDefoultUser();
         navigatePanelPage.btnPersonalAccountClick();
-        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl().toString());
+        Assert.assertEquals("https://stellarburgers.nomoreparties.site/account", driver.getCurrentUrl());
     }
 
 }
